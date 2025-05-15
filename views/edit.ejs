@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Task • Listopia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-mono bg-[#DBFFCB] min-h-screen flex flex-col items-center p-8">
+  <div class="w-3/4 max-w-4xl bg-white rounded-xl shadow-md p-6 text-left">
+    <h1 class="text-3xl font-bold text-[#FF6363] mb-6">Edit Task</h1>
+
+    <form action="/edit/<%= task._id %>" method="POST" class="flex items-center gap-2 mb-4">
+      <input
+        type="text"
+        name="task"
+        value="<%= task.task %>"
+        class="flex-grow px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#BEE4D0]"
+        required
+      />
+      <button
+        type="submit"
+        class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-[#FF6363] transition"
+      >
+        Update
+      </button>
+    </form>
+
+    <div class="text-left">
+      <a href="/" class="text-blue-600 hover:text-blue-800 text-sm font-medium">← Back to Listopia</a>
+    </div>
+  </div>
+</body>
+</html>

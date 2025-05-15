@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Listopia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-mono bg-[#DBFFCB] min-h-screen flex flex-col items-center p-8">
+  <div class="w-3/4 bg-white rounded-xl shadow-md p-6">
+    <h1 class="text-3xl font-bold text-center text-[#FF6363] mb-6">📝 LisTopia</h1>
+
+    <!-- Form to Add New Task -->
+    <form action="/" method="POST" class="flex items-start gap-2 mb-6">
+      <input type="text" name="task" placeholder="Add a new task..."
+        class="flex-grow px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#BEE4D0]" required />
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-[#FF6363] transition">
+        Add
+      </button>
+    </form>
+
+    <!-- Task List -->
+    <ul class="space-y-2">
+      <% todos.forEach(todo=> { %>
+        <li class="flex justify-between items-start bg-gray-50 p-3 rounded-md shadow-sm">
+          <div class="flex-1">
+            <span class="<%= todo.completed ? 'line-through text-gray-500' : '' %>">
+              <%= todo.task %>
+            </span>
+            <% if (todo.completed) { %>
+              <span class="text-green-500 text-sm ml-2">✔ Done</span>
+              <% } %>
+          </div>
+
+          <div class="flex items-center space-x-8">
+
+            <!-- Edit Button -->
+            <form action="/edit/<%= todo._id %>" method="GET">
+              <button class="text-yellow-600 hover:text-yellow-800 text-sm font-semibold">✏️ Edit</button>
+            </form>
+
+            <!-- Delete Button -->
+            <form action="/<%= todo._id %>" method="POST">
+              <button class="text-red-600 hover:text-red-800 text-sm font-semibold">🗑 Delete</button>
+            </form>
+          </div>
+        </li>
+        <% }) %>
+    </ul>
+
+  </div>
+</body>
+
+</html>
